@@ -1,4 +1,5 @@
 import time
+import itertools
 
 
 class CrackPassword:
@@ -57,11 +58,22 @@ class CrackPassword:
                 print("le mot de passe est : " + CrackPassword.user_pass)
                 return permutation
 
+    def verification2(self, nbr=1):
+        for permutation in itertools.product(CrackPassword.caracteres, repeat=nbr):
+            self.count += 1
+            print("".join(permutation), self.count)
+            if "".join(permutation) == CrackPassword.user_pass:
+                print("----------------------------")
+                print("Nombres d'essaies : " + str(self.count))
+                print("le mot de passe est : " + CrackPassword.user_pass)
+                return permutation
+        self.verification2(nbr+1)
+
 
 def main():
     crack_password = CrackPassword()
     start = time.time()
-    crack_password.verification()
+    crack_password.verification2()
     end = time.time()
     print(round(end - start, 4), "Seconds")
     print("----------------------------")
