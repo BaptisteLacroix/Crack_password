@@ -10,7 +10,8 @@ class CrackPassword:
                   'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
                   'O',
                   'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8',
-                  '9']
+                  '9', '&', '~', '#', '"', "'", '{', '(', '[', '-', '|', '`', '_', "\\", '^', '@', ')', ']', '=', '}',
+                  ' ', '¨', '^', '£', '$', '¤', '%', 'ù', 'µ', '*', ',', ';', ':', '?', '.', '/', '§', '!']
 
     def __init__(self):
         self.nbr = 1
@@ -51,20 +52,20 @@ class CrackPassword:
     def verification(self):
         for permutation in self.all_permutations(self.nbr):
             self.count += 1
-            print("".join(permutation), self.count)
+            print("".join(permutation), f"{self.count:_}")
             if "".join(permutation) == CrackPassword.user_pass:
                 print("----------------------------")
-                print("Nombres d'essaies : " + str(self.count))
+                print(f"Nombres d'essaies : {self.count:_}")
                 print("le mot de passe est : " + CrackPassword.user_pass)
                 return permutation
 
     def verification2(self, nbr=1):
         for permutation in itertools.product(CrackPassword.caracteres, repeat=nbr):
             self.count += 1
-            print("".join(permutation), self.count)
+            print("".join(permutation), f"{self.count:_}")
             if "".join(permutation) == CrackPassword.user_pass:
                 print("----------------------------")
-                print("Nombres d'essaies : " + str(self.count))
+                print(f"Nombres d'essaies : {self.count:_}")
                 print("le mot de passe est : " + CrackPassword.user_pass)
                 return permutation
         self.verification2(nbr+1)
@@ -75,7 +76,9 @@ def main():
     start = time.time()
     crack_password.verification2()
     end = time.time()
-    print(round(end - start, 4), "Seconds")
+    print(round(end - start, 4), "Secondes")
+    print(round((end - start)/60, 2), "Minutes")
+    print(round((end - start)/3600, 2), "Heures")
     print("----------------------------")
 
 
