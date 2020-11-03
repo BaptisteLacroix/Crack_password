@@ -1,2 +1,6 @@
 # Crack_password
-Class who can crack password in python
+Class who can crack password using python
+
+crack_passord can crack password using permutation or product
+
+pdf_cracker can crack the password from pdf doawnload on your computer
